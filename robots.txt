@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://eymen.akts.tr/sitemap.xml
