@@ -242,7 +242,8 @@ section{padding:clamp(80px,12vw,150px) 0 0}
 /* ═══════════ HAKKINDA ═══════════ */
 .about{display:grid;grid-template-columns:1fr 1.15fr;gap:clamp(32px,6vw,96px);align-items:start}
 @media(max-width:860px){.about{grid-template-columns:1fr}}
-.big-quote{position:sticky;top:110px;font-size:clamp(30px,4.2vw,54px);font-weight:600;letter-spacing:-.045em;line-height:1.05}
+@media(min-width:861px){.big-quote{position:sticky;top:110px}}
+.big-quote{font-size:clamp(30px,4.2vw,54px);font-weight:600;letter-spacing:-.045em;line-height:1.05}
 .big-quote span{color:var(--dim)}
 .big-quote cite{display:block;margin-top:22px;font-style:normal}
 .prose p{color:var(--muted);font-size:clamp(16px,1.5vw,18px);line-height:1.7;margin-bottom:22px}
@@ -421,13 +422,13 @@ footer a:hover{color:var(--fg)}
   <a class="cta rv" href="mailto:eymen@akts.tr"><span>eymen@akts.tr</span> <svg viewBox="0 0 24 24"><path d="M7 17 17 7M17 7H8M17 7v9"/></svg></a>
   <div class="socials rv">
     <a href="https://github.com/eymenaktas" target="_blank" rel="noopener"><span><small>GitHub</small>eymenaktas</span><svg class="ar" viewBox="0 0 24 24"><path d="M7 17 17 7M17 7H8M17 7v9"/></svg></a>
-    <a href="https://github.com/Akts-Studio" target="_blank" rel="noopener" style="--brand:#e0484a"><span><small>Stüdyo</small>Akts Studio</span><svg class="ar" viewBox="0 0 24 24"><path d="M7 17 17 7M17 7H8M17 7v9"/></svg></a>
+    <a href="https://github.com/Akts-Studio" target="_blank" rel="noopener" style="--brand:#e0484a"><span style="display:flex;align-items:center;gap:10px"><img src="https://akts.tr/brand/akts-studio.svg" alt="" width="18" height="18" style="border-radius:5px;flex:none"><span><small>Stüdyo</small>Akts Studio</span></span><svg class="ar" viewBox="0 0 24 24"><path d="M7 17 17 7M17 7H8M17 7v9"/></svg></a>
     <a href="https://discord.com/users/DISCORD-ID" target="_blank" rel="noopener" style="--brand:#7b86ff"><span><small>Discord</small>MaskeDev</span><svg class="ar" viewBox="0 0 24 24"><path d="M7 17 17 7M17 7H8M17 7v9"/></svg></a>
     <a href="https://akts.tr" target="_blank" rel="noopener"><span><small>Ana site</small>akts.tr</span><svg class="ar" viewBox="0 0 24 24"><path d="M7 17 17 7M17 7H8M17 7v9"/></svg></a>
   </div>
   <!-- Footer bilerek `rv` değil: gizlilik bağlantısı kaydırma şansına bırakılmaz. -->
   <footer class="mono">
-    <span>© <span id="year">2026</span> Eymen Aktaş · Akts Studio</span>
+    <span style="display:inline-flex;align-items:center;gap:8px"><img src="https://akts.tr/brand/akts-studio.svg" alt="" width="14" height="14" style="border-radius:5px;flex:none">© <span id="year">2026</span> Eymen Aktaş · Akts Studio</span>
     <nav><a href="gizlilik.html">Gizlilik</a><a href="#top">Yukarı ↑</a></nav>
   </footer>
 </section>
