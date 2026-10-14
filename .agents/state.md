@@ -22,7 +22,6 @@ Gizli depolar açılırsa kartlara `repo:` ekle (maske-pack, ezan-vaktim, studyt
 ## Bilinen tuzaklar
 
 - Cloudflare görselleri önbellekte tutuyor: aynı adla değişen dosyaya `?v=N` ver.
-- Discord bağlantısı hâlâ `DISCORD-ID` yer tutucusu.
 
 - Yayın: `rsync -a index.html assets akts:/var/www/portfolio/` (önce sunucuda
   `index.html.yedek-*` al). Dal `gizlilik-footer-404`, canlı bundan.
