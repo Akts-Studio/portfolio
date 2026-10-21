@@ -32,3 +32,5 @@ Gizli depolar açılırsa kartlara `repo:` ekle (maske-pack, ezan-vaktim, studyt
 - Karo logoları 64'lük viewBox; akts-landing'deki 48'lik glifler 1.4545 ile ölçeklenip
   2 birim kaydırılıyor.
 - Önizleme: `akts-landing/.claude/launch.json` içindeki `portfolyo` (4193).
+
+- [x] **2026-10-22 optimizasyon turu (CANLI, claude):** WebP görseller (profil 73KB→5KB, logolar), Inter latin-ext Türkçe alt kümesi 85→16KB, latin font preload, Discord banner statik webp?size=600, beat animasyonu box-shadow→opacity (boşta CPU 146→2 ms/sn). nginx: /assets/fonts 1y immutable. Mobil transfer 848→174KB.

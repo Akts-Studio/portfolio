@@ -18,7 +18,8 @@
 <meta property="og:image:alt" content="Eymen — Minecraft geliştiricisi ve makine öğrenmesi" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:image" content="https://eymen.akts.tr/assets/og.png" />
-<link href="/assets/fonts/inter.css" rel="stylesheet" />
+<link rel="preload" as="font" type="font/woff2" href="/assets/fonts/inter-v20-UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7W0Q5nw.woff2" crossorigin />
+<link href="/assets/fonts/inter.css?v=2" rel="stylesheet" />
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
 <!-- Discord bağlantı önizlemesinin yan şeridi bu rengi kullanır. -->
@@ -91,7 +92,7 @@ img{display:block;max-width:100%}
 .bar .wrap{display:flex;align-items:center;gap:24px;height:60px}
 .mark{display:flex;align-items:center;gap:10px;font-weight:600;letter-spacing:-.02em}
 .mark i{width:9px;height:9px;border-radius:50%;background:var(--live);box-shadow:0 0 0 4px color-mix(in srgb,var(--live) 18%,transparent);animation:beat 2.4s var(--ease) infinite}
-@keyframes beat{50%{box-shadow:0 0 0 7px color-mix(in srgb,var(--live) 0%,transparent)}}
+@keyframes beat{50%{opacity:.3}}
 .nav{display:flex;gap:4px;margin-left:auto}
 .nav a{padding:6px 12px;border-radius:999px;font-size:14px;color:var(--muted);transition:color .25s,background .25s}
 .nav a:hover{color:var(--fg);background:var(--line)}
@@ -328,8 +329,8 @@ img{height:auto}
 .acts{display:flex;align-items:center;gap:8px}
 .pill{display:inline-flex;align-items:center;justify-content:center;gap:7px;height:36px;min-width:36px;padding:0 12px;font-size:13.5px;font-weight:500;color:var(--fg)}
 .pill svg{width:16px;height:16px;flex:none}
-.pill.dc{--brand-rgb:88 101 242}
-.pill.dc:hover{color:#fff;background:linear-gradient(#6b77f5,#5865f2)}
+.pill.dc{--brand-rgb:230 116 46}
+.pill.dc:hover{color:#fff;background:linear-gradient(#f08a4b,#e6742e)}
 @media(max-width:560px){.pill span{display:none}.pill{padding:0}}
 
 /* ═══════════ HERO IŞIK HALKASI — CSS, WebGL/canvas yok ═══════════ */
@@ -347,7 +348,7 @@ img{height:auto}
    Discord'un koyu teması: kart #232428, iç gövde #111214, ayraç #2e2f34,
    metin #f2f3f5 / #dbdee1 / #b5bac1, köşe 8px, genişlik 300-340px. */
 .about-side{display:grid;gap:40px;align-content:start}
-.dc-card{font-family:'gg sans','Noto Sans','Helvetica Neue',Helvetica,Arial,sans-serif;--brand-rgb:88 101 242;--dc-bg:#232428;--dc-in:#111214;width:100%;max-width:340px;border-radius:8px;background:var(--dc-bg);color:#dbdee1;
+.dc-card{font-family:'gg sans','Noto Sans','Helvetica Neue',Helvetica,Arial,sans-serif;--brand-rgb:230 116 46;--dc-bg:#232428;--dc-in:#111214;width:100%;max-width:340px;border-radius:8px;background:var(--dc-bg);color:#dbdee1;
   font-family:"gg sans","Noto Sans",var(--font);font-size:14px;line-height:1.286;letter-spacing:0;overflow:hidden;
   box-shadow:0 8px 16px #0000003d,inset 0 1px #fff1}
 .dc-banner{height:105px;background:var(--dc-banner,#ff5b4a) center/cover no-repeat}
@@ -390,7 +391,7 @@ img{height:auto}
 .dc-times{display:flex;justify-content:space-between;margin-top:4px;font-size:12px;color:#b5bac1;font-variant-numeric:tabular-nums}
 .dc-btn{display:flex;align-items:center;justify-content:center;gap:8px;height:38px;margin-top:12px;border-radius:8px;background:#5865f2;color:#fff;font-size:14px;font-weight:500;
   transition:background .17s}
-.dc-btn:hover{background:#4752c4}
+.dc-btn:hover{background:#e6742e}
 .dc-btn svg{width:18px;height:18px}
 .dc-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 .dc-cap{margin-bottom:14px}
@@ -438,7 +439,7 @@ img{height:auto}
   <div class="hero-orbit" aria-hidden="true"><span>N</span></div>
   <div class="wrap" style="position:relative;z-index:1">
     <div class="hero-top fade" style="transition-delay:.1s">
-      <div class="avatar"><img src="assets/profile.jpg?v=2" width="52" height="52" fetchpriority="high" decoding="async" alt="Eymen'in profil fotoğrafı" onerror="this.replaceWith(document.createTextNode('E'))" /></div>
+      <div class="avatar"><img src="assets/profile.webp?v=3" width="52" height="52" fetchpriority="high" decoding="async" alt="Eymen'in profil fotoğrafı" onerror="this.replaceWith(document.createTextNode('E'))" /></div>
       <span class="status"><i></i>Şu an <b>Ecstacy Anticheat</b> · Media Manager</span>
     </div>
     <h1 class="name" aria-label="Eymen Aktaş"><span class="clip" aria-hidden="true" data-split>Eymen</span><br><span class="clip" aria-hidden="true"><em data-split>Aktaş.</em></span></h1>
@@ -470,7 +471,7 @@ img{height:auto}
         <div class="halo" style="background:radial-gradient(120% 90% at 50% 0%,#1d6b52,#0b3b2e 55%,#05170f)"></div>
         <span class="ft-num">MEHTAPP · ANDROID</span>
         <span class="ft-go"><svg viewBox="0 0 24 24"><path d="M7 17 17 7M17 7H8M17 7v9"/></svg></span>
-        <div class="phone" style="--r:-4deg"><div><img src="https://akts.tr/shots/mehtapp.jpg" alt="MehtApp ekranı" width="234" height="507" loading="lazy" decoding="async" /><i></i></div></div>
+        <div class="phone" style="--r:-4deg"><div><img src="https://akts.tr/shots/mehtapp.webp?v=3" alt="MehtApp ekranı" width="234" height="507" loading="lazy" decoding="async" /><i></i></div></div>
       </div>
       <div class="ft-body">
         <img class="ic" src="https://ezan.akts.tr/img/icon-180.png" width="52" height="52" loading="lazy" alt="" />
@@ -486,10 +487,10 @@ img{height:auto}
         <div class="halo" style="background:radial-gradient(120% 90% at 50% 0%,#eaf4ed,#c7ddcf 60%,#8fbca1)"></div>
         <span class="ft-num" style="color:rgba(10,40,25,.7)">STUDYTRACK · ANDROID</span>
         <span class="ft-go" style="background:rgba(10,40,25,.12);color:#0a2819"><svg viewBox="0 0 24 24"><path d="M7 17 17 7M17 7H8M17 7v9"/></svg></span>
-        <div class="phone" style="--r:4deg"><div><img src="https://akts.tr/shots/studytrack.jpg" alt="StudyTrack ekranı" width="234" height="507" loading="lazy" decoding="async" /><i></i></div></div>
+        <div class="phone" style="--r:4deg"><div><img src="https://akts.tr/shots/studytrack.webp?v=3" alt="StudyTrack ekranı" width="234" height="507" loading="lazy" decoding="async" /><i></i></div></div>
       </div>
       <div class="ft-body">
-        <img class="ic" src="assets/studytrack.png?v=2" width="52" height="52" loading="lazy" alt="" />
+        <img class="ic" src="assets/studytrack.webp?v=3" width="52" height="52" loading="lazy" alt="" />
         <div>
           <h3>StudyTrack</h3>
           <p>Pomodoro, günlük hedef, seri ve rozetler. Expo + React Native, widget'lar ve saat uygulaması native Kotlin.</p>
@@ -511,7 +512,7 @@ img{height:auto}
   <div class="sec-head rv"><span class="mono">03 — Roller</span><h2>Ekiplerde<br><span>üstlendiklerim.</span></h2></div>
   <div class="roles">
     <article class="role rv deal" style="--brand:var(--c);--c:#a855f7">
-      <div class="role-top"><img src="assets/ecstacy.png" width="48" height="48" loading="lazy" alt="Ecstacy Anticheat logosu" /><div><h3>Ecstacy Anticheat</h3><div class="t">Media Manager</div></div><span class="pill-s on">Aktif</span></div>
+      <div class="role-top"><img src="assets/ecstacy.webp" width="48" height="48" loading="lazy" alt="Ecstacy Anticheat logosu" /><div><h3>Ecstacy Anticheat</h3><div class="t">Media Manager</div></div><span class="pill-s on">Aktif</span></div>
       <p>Anticheat'in dış yüzünü yönetiyorum — tanıtım içerikleri, tespit videoları, sürüm duyuruları ve topluluk iletişimi. Bir hilenin nasıl yakalandığını insanların anlayacağı şekilde göstermek işin en keyifli kısmı.</p>
       <div class="chips"><span>İçerik &amp; Medya</span><span>Duyurular</span><span>Topluluk</span></div>
     </article>
@@ -524,12 +525,12 @@ img{height:auto}
   <p class="mono sub rv">Eski roller</p>
   <div class="roles">
     <article class="role rv deal" style="--brand:var(--c);--c:#22c55e">
-      <div class="role-top"><img src="assets/trprac.png" width="48" height="48" loading="lazy" alt="TrPrac logosu" /><div><h3>TrPrac</h3><div class="t">Eski Owner</div></div><span class="pill-s">Eski</span></div>
+      <div class="role-top"><img src="assets/trprac.webp" width="48" height="48" loading="lazy" alt="TrPrac logosu" /><div><h3>TrPrac</h3><div class="t">Eski Owner</div></div><span class="pill-s">Eski</span></div>
       <p>Practice sunucusunu sıfırdan kurup yönettim — oyun modları, queue ve maç sistemi, ekip organizasyonu ve altyapı. Bir sunucuyu ayakta tutmanın koddan çok daha fazlası olduğunu burada öğrendim.</p>
       <div class="chips"><span>Ownership</span><span>Sunucu Altyapısı</span><span>Ekip Yönetimi</span></div>
     </article>
     <article class="role rv deal" style="--brand:var(--c);--c:#ef4444">
-      <div class="role-top"><img src="assets/wrus.png" width="48" height="48" loading="lazy" alt="wrus.net logosu" onerror="this.replaceWith(Object.assign(document.createElement('b'),{className:'mono-l',textContent:'W'}))" /><div><h3>wrus.net</h3><div class="t">Developer</div></div><span class="pill-s">Eski</span></div>
+      <div class="role-top"><img src="assets/wrus.webp" width="48" height="48" loading="lazy" alt="wrus.net logosu" onerror="this.replaceWith(Object.assign(document.createElement('b'),{className:'mono-l',textContent:'W'}))" /><div><h3>wrus.net</h3><div class="t">Developer</div></div><span class="pill-s">Eski</span></div>
       <p>Sunucunun developer ekibindeydim — plugin geliştirme ve oyun içi sistemler üzerine çalıştım. Artık aktif değilim, ama farklı bir ekiple çalışmanın nasıl olduğunu görmek iyi geldi.</p>
       <div class="chips"><span>Plugin Geliştirme</span><span>Oyun Sistemleri</span></div>
     </article>
@@ -547,7 +548,7 @@ img{height:auto}
       <article class="dc-card fx" id="dcCard" aria-label="Discord profili">
         <div class="dc-banner" id="dcBanner"></div>
         <div class="dc-head">
-          <div class="dc-av"><img id="dcAv" src="assets/profile.jpg?v=2" width="80" height="80" loading="lazy" decoding="async" alt="Nemy'nin Discord avatarı"><img class="dc-deco" id="dcDeco" alt="" hidden><span class="dc-dot" id="dcDot" data-d="offline"><i></i></span></div>
+          <div class="dc-av"><img id="dcAv" src="assets/profile.webp?v=3" width="80" height="80" loading="lazy" decoding="async" alt="Nemy'nin Discord avatarı"><img class="dc-deco" id="dcDeco" alt="" hidden><span class="dc-dot" id="dcDot" data-d="offline"><i></i></span></div>
           <div class="dc-bubble" id="dcBubble" hidden></div>
         </div>
         <div class="dc-body">
@@ -646,7 +647,7 @@ const PROJECTS = [
     desc:"40 oyunluk Türkçe oyun portalı; 32'sini sıfırdan yazdım. İndirme ve üyelik yok, tamamı tarayıcıda çalışıyor. Vite + React + Tailwind."
   },
   {
-    logo:`<defs><clipPath id="c-studytrack"><rect width="64" height="64" rx="15"/></clipPath></defs><image href="assets/studytrack.png?v=2" width="64" height="64" clip-path="url(#c-studytrack)"/>`,
+    logo:`<defs><clipPath id="c-studytrack"><rect width="64" height="64" rx="15"/></clipPath></defs><image href="assets/studytrack.webp?v=3" width="64" height="64" clip-path="url(#c-studytrack)"/>`,
     name:"StudyTrack", badge:"Android", brand:"#4cb572",
     url:"https://studytrack.tr",
     desc:"Çalışma takip uygulaması: pomodoro, günlük hedef ve seri. Arayüz Expo + React Native; widget'lar, kapalıyken de çalan zamanlayıcı bildirimi ve Galaxy Watch uygulaması native Kotlin. Arka uç kendi sunucumda."
@@ -670,13 +671,13 @@ const PROJECTS = [
     desc:"Kodla kısa video üretimi: TikTok, Shorts ve Reels için dikey 1080p 60 FPS videoyu API'den tek istekle render ediyor. Next.js + Remotion, Supabase, QStash kuyruğu; n8n ve Make.com'a webhook ile bağlanıyor."
   },
   {
-    logo:`<img src="assets/trprac.png" alt="" loading="lazy">`,
+    logo:`<img src="assets/trprac.webp" alt="" loading="lazy">`,
     name:"TrCore", badge:"Açık kaynak", brand:"#22c55e",
     repo:"https://github.com/Akts-Studio/trCore",
     desc:"TrPrac altyapısının çekirdek eklentisi. Paper için Java."
   },
   {
-    logo:`<img src="assets/trprac.png" alt="" loading="lazy">`,
+    logo:`<img src="assets/trprac.webp" alt="" loading="lazy">`,
     name:"TrKit", badge:"Kapalı kaynak", brand:"#22c55e",
     desc:"TrPrac için kit sistemi. Kaynak kodu paylaşılmıyor."
   }
@@ -804,7 +805,7 @@ const dcCiz = v => {
   dc.user.textContent = (k.kullaniciAdi || "eymenaktas") + " • he/him";
   const av = guvenliUrl(k.avatar); if (av && dc.av.getAttribute("src") !== av) dc.av.src = av;
   const deco = guvenliUrl(k.dekorasyon); dc.deco.hidden = !deco; if (deco) dc.deco.src = deco;
-  const bn = guvenliUrl(k.banner);
+  const bn0 = guvenliUrl(k.banner), bn = bn0 && /cdn\.discordapp\.com\/banners\//.test(bn0) ? bn0.replace(/\.(gif|png|jpe?g|webp)(\?.*)?$/i, ".webp?size=600") : bn0;
   dc.banner.style.background = bn ? `center/cover no-repeat url("${bn}")` : (/^#[0-9a-f]{3,8}$/i.test(k.bannerRengi || "") ? k.bannerRengi : "#ff5b4a");
   const oz = v.ozelDurum;
   dc.bubble.hidden = !(oz && (oz.metin || oz.emoji));
