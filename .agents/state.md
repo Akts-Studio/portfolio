@@ -1,6 +1,6 @@
 # Durum — websitesi (eymen.akts.tr)
 
-Güncelleme: 2026-10-21 | Son araç: codex
+Güncelleme: 2026-10-22 | Son araç: claude
 
 ## Hedef
 
@@ -34,3 +34,5 @@ Gizli depolar açılırsa kartlara `repo:` ekle (maske-pack, ezan-vaktim, studyt
 - Önizleme: `akts-landing/.claude/launch.json` içindeki `portfolyo` (4193).
 
 - [x] **2026-10-22 optimizasyon turu (CANLI, claude):** WebP görseller (profil 73KB→5KB, logolar), Inter latin-ext Türkçe alt kümesi 85→16KB, latin font preload, Discord banner statik webp?size=600, beat animasyonu box-shadow→opacity (boşta CPU 146→2 ms/sn). nginx: /assets/fonts 1y immutable. Mobil transfer 848→174KB.
+
+- [x] **2026-10-22 hero nokta küresi (CANLI, claude):** N + dönen halka yerine `assets/dot-field.js` (canvas 2D, ~1k nokta): ışık imleci izler, imleç noktaları iter, tık/dokunuş dalga yayar. Yalnız ekranda+sekme görünürken, hareket bitince rAF 0; reduced-motion'da tek statik kare. Boşta 2.4 ms/sn (önce 2.2), imleç hareketinde script ~45-65 ms/sn. Boş `assets/vendor` silindi (yerel+sunucu). Landing'e uygulanmadı (Eymen landing'i 21 Ekim öncesine alıyor).

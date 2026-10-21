@@ -333,15 +333,11 @@ img{height:auto}
 .pill.dc:hover{color:#fff;background:linear-gradient(#f08a4b,#e6742e)}
 @media(max-width:560px){.pill span{display:none}.pill{padding:0}}
 
-/* ═══════════ HERO IŞIK HALKASI — CSS, WebGL/canvas yok ═══════════ */
-.hero-orbit{position:absolute;z-index:0;right:max(16px,calc(50% - 620px + 24px));top:clamp(24px,7vh,80px);width:min(28rem,40vw);aspect-ratio:1;display:grid;place-items:center;pointer-events:none}
-.hero-orbit::before,.hero-orbit::after{content:"";position:absolute;border-radius:50%}
-.hero-orbit::before{inset:7%;background:conic-gradient(from 210deg,transparent 0 23%,color-mix(in srgb,var(--accent) 72%,transparent) 36%,#fff 45%,color-mix(in srgb,var(--accent-2) 70%,transparent) 55%,transparent 68%);-webkit-mask:radial-gradient(transparent 59%,#000 61% 63%,transparent 65%);mask:radial-gradient(transparent 59%,#000 61% 63%,transparent 65%);filter:drop-shadow(0 0 20px color-mix(in srgb,var(--accent) 45%,transparent));animation:orbit 18s linear infinite}
-.hero-orbit::after{inset:18%;background:radial-gradient(circle,color-mix(in srgb,var(--accent) 20%,transparent),transparent 66%)}
-.hero-orbit span{position:relative;font-size:clamp(92px,16vw,184px);font-weight:700;line-height:1;color:var(--fg);letter-spacing:-.1em;text-shadow:0 0 32px color-mix(in srgb,var(--accent) 40%,transparent)}
-@keyframes orbit{to{transform:rotate(1turn)}}
+/* ═══════════ HERO NOKTA KÜRESİ — canvas 2D (assets/dot-field.js), WebGL yok ═══════════ */
+.hero-orbit{position:absolute;z-index:0;right:max(16px,calc(50% - 620px + 24px));top:clamp(24px,7vh,80px);width:min(28rem,40vw);aspect-ratio:1;pointer-events:none}
+.hero-orbit::before{content:"";position:absolute;inset:-12%;border-radius:50%;background:radial-gradient(closest-side,rgba(190,88,25,.2),transparent)}
 @media(max-width:760px){
-  .hero-orbit{position:relative;right:auto;top:auto;align-self:center;width:min(16rem,64vw);margin:0 auto -8px}
+  .hero-orbit{position:relative;right:auto;top:auto;align-self:center;width:min(17rem,70vw);margin:0 auto 8px}
 }
 
 /* ═══════════ DISCORD PROFİL KARTI ═══════════
@@ -436,7 +432,7 @@ img{height:auto}
 
 <!-- ═════════ HERO ═════════ -->
 <header class="hero" id="top">
-  <div class="hero-orbit" aria-hidden="true"><span>N</span></div>
+  <div class="hero-orbit" aria-hidden="true" data-dotfield></div>
   <div class="wrap" style="position:relative;z-index:1">
     <div class="hero-top fade" style="transition-delay:.1s">
       <div class="avatar"><img src="assets/profile.webp?v=3" width="52" height="52" fetchpriority="high" decoding="async" alt="Eymen'in profil fotoğrafı" onerror="this.replaceWith(document.createTextNode('E'))" /></div>
@@ -921,6 +917,11 @@ btn.addEventListener("click", () => {
   }).catch(() => {});
 });
 })();
+</script>
+<script type="module">
+import { mountDotField } from "./assets/dot-field.js?v=1";
+const el = document.querySelector("[data-dotfield]");
+if (el) mountDotField(el);
 </script>
 </body>
 </html>
