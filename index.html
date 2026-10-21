@@ -84,14 +84,30 @@ img{display:block;max-width:100%}
 [data-theme="light"] .grain{opacity:.07}
 
 /* ═══════════ ÜST ÇUBUK ═══════════ */
-.bar{
-  position:sticky;top:0;z-index:50;
-  background:transparent;border-bottom:1px solid transparent;
-  transition:border-color .4s,background-color .4s,backdrop-filter .4s,-webkit-backdrop-filter .4s;
+.bar{position:sticky;top:0;z-index:50;padding:12px 12px 0;pointer-events:none}
+.bar .wrap{
+  pointer-events:auto;position:relative;isolation:isolate;
+  display:flex;align-items:center;gap:16px;height:auto;min-height:56px;padding:8px 10px 8px 18px;
+  width:100%;max-width:min(960px,100%);margin:0 auto;border-radius:22px;
+  background:linear-gradient(180deg,color-mix(in srgb,var(--fg) 11%,transparent),color-mix(in srgb,var(--fg) 4%,transparent));
+  -webkit-backdrop-filter:blur(18px) saturate(185%);backdrop-filter:blur(18px) saturate(185%);
+  border:1px solid color-mix(in srgb,var(--fg) 14%,transparent);
+  box-shadow:inset 0 1px 0 color-mix(in srgb,var(--fg) 26%,transparent),inset 0 -1px 0 color-mix(in srgb,var(--fg) 8%,transparent),
+    inset 0 0 18px color-mix(in srgb,var(--fg) 5%,transparent),0 14px 34px -14px rgba(0,0,0,.55),0 2px 6px -2px rgba(0,0,0,.25);
+  transition:max-width .5s var(--ease),padding .5s var(--ease),border-radius .5s var(--ease);
 }
-.bar.stuck{border-bottom-color:var(--line);background:color-mix(in srgb,var(--bg) 66%,transparent);
-  backdrop-filter:blur(16px) saturate(1.5);-webkit-backdrop-filter:blur(16px) saturate(1.5)}
-.bar .wrap{display:flex;align-items:center;gap:24px;height:60px}
+/* üst yansıma ve kenar parlaması */
+.bar .wrap::before{content:"";position:absolute;inset:0;z-index:-1;border-radius:inherit;pointer-events:none;
+  background:radial-gradient(120% 80% at 50% -30%,color-mix(in srgb,var(--fg) 24%,transparent),transparent 60%),
+    linear-gradient(115deg,color-mix(in srgb,var(--fg) 10%,transparent),transparent 35%,transparent 65%,color-mix(in srgb,var(--fg) 7%,transparent))}
+.bar .wrap::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;padding:1px;
+  background:linear-gradient(135deg,color-mix(in srgb,var(--fg) 55%,transparent),color-mix(in srgb,var(--fg) 5%,transparent) 40%,color-mix(in srgb,var(--fg) 16%,transparent));
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);mask-composite:exclude}
+@supports (backdrop-filter:url(#x)) and (not (-webkit-hyphens:none)){
+  .bar .wrap{backdrop-filter:url(#glass-refract) blur(14px) saturate(190%)}
+}
+.bar.stuck .wrap{max-width:min(820px,100%);border-radius:18px;padding-top:5px;padding-bottom:5px}
+@media(prefers-reduced-transparency:reduce){.bar .wrap{background:var(--surface);backdrop-filter:none;-webkit-backdrop-filter:none}}
 .mark{display:flex;align-items:center;gap:10px;font-weight:600;letter-spacing:-.02em}
 .mark i{width:9px;height:9px;border-radius:50%;background:var(--live);box-shadow:0 0 0 4px color-mix(in srgb,var(--live) 18%,transparent);animation:beat 2.4s var(--ease) infinite}
 @keyframes beat{50%{opacity:.3}}
@@ -102,7 +118,8 @@ img{display:block;max-width:100%}
 .theme-btn{width:36px;height:36px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;transition:border-color .3s,transform .5s var(--spring)}
 .theme-btn:hover{border-color:var(--line-hi);transform:rotate(60deg)}
 .theme-btn svg{width:16px;height:16px;stroke:var(--fg);fill:none;stroke-width:1.7;stroke-linecap:round}
-@media(max-width:760px){.nav,.clock{display:none}.acts{margin-left:auto}}
+@media(max-width:760px){.nav,.clock{display:none}.acts{margin-left:auto}.bar{padding:8px 8px 0}.bar .wrap{gap:8px;padding:6px 8px 6px 14px}.mark{font-size:14px;min-width:0}}
+@media(max-width:380px){.mark{display:none}.acts{margin-left:0;width:100%;justify-content:space-between}}
 
 /* ═══════════ HERO ═══════════ */
 .hero{position:relative;min-height:calc(100svh - 60px);display:flex;flex-direction:column;justify-content:flex-end;padding:clamp(48px,8vh,96px) 0 clamp(32px,5vh,56px);overflow:hidden}
@@ -414,6 +431,7 @@ img{height:auto}
 <div class="grain" aria-hidden="true"></div>
 
 <!-- ═════════ ÜST ÇUBUK ═════════ -->
+<svg aria-hidden="true" width="0" height="0" style="position:absolute"><defs><filter id="glass-refract" x="0%" y="0%" width="100%" height="100%" color-interpolation-filters="sRGB"><feTurbulence type="fractalNoise" baseFrequency="0.008 0.012" numOctaves="2" seed="7" result="n"/><feGaussianBlur in="n" stdDeviation="2" result="s"/><feDisplacementMap in="SourceGraphic" in2="s" scale="18" xChannelSelector="R" yChannelSelector="G"/></filter></defs></svg>
 <div class="bar" id="bar">
   <div class="wrap">
     <a class="mark" href="#top" aria-label="Başa dön"><i></i>eymen.akts.tr</a>
