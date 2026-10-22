@@ -46,3 +46,6 @@ Yeşil nokta kalktı, logo (favicon E) hapı; logo / bağlantılar / araçlar(Gi
 
 ## 2026-10-22 navbar gösterge (claude, CANLI, 3f63ecb)
 `.gl` height geçişi kalktı (kaydırınca .bar-row transform scale), rAF'lı scroll; landing ile aynı BlankReel tarzı kayan cam gösterge (#navInd). Ölçüm: layout 27→4, recalc 152→38 ms. Yedek sunucuda index.html.yedek-20261022-nav.
+
+## 2026-10-22 navbar yok olma + içerik (claude, CANLI, cafa0f3)
+Navbar `position:fixed` (sticky + backdrop-filter kareleri düşürüyordu: 34/227 karede çubuk yoktu → 0/234). "İşler" → "Projelerim". Logo: Akts "A" (og görselindeki Eymen logosu; kişisel başka logo bulunamadı, emin değilim). theme-color #e6742e. TrCore kapalı kaynak (depo private), OyunHub 20 seçkin oyun, Maske Packs kartı, Aktaş Fit öne çıkan 3. kart, sayaçlar 13 proje / 3 Android. Yükleme ekranı (≤1.5 sn).
