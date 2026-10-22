@@ -40,3 +40,6 @@ Gizli depolar açılırsa kartlara `repo:` ekle (maske-pack, ezan-vaktim, studyt
 
 ## 2026-10-22 (claude)
 Navbar yüzen liquid glass kapsül yapıldı (backdrop blur+saturate, kenar parlaması, SVG kırılma; Discord/GitHub/mail hapları duruyor). CANLI.
+
+## 2026-10-22 navbar ayrı haplar (claude)
+Yeşil nokta kalktı, logo (favicon E) hapı; logo / bağlantılar / araçlar(GitHub, mail, tema) / Discord ayrı koyu sıcak cam haplar. SVG kırılma filtresi (titreme), max-width geçişi ve saat kaldırıldı; kaydırınca yalnız yükseklik küçülür. Discord bağlantısı sabit profil linki. CANLI (yedek: index.html.yedek-*).

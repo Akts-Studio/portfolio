@@ -85,41 +85,40 @@ img{display:block;max-width:100%}
 
 /* ═══════════ ÜST ÇUBUK ═══════════ */
 .bar{position:sticky;top:0;z-index:50;padding:12px 12px 0;pointer-events:none}
-.bar .wrap{
-  pointer-events:auto;position:relative;isolation:isolate;
-  display:flex;align-items:center;gap:16px;height:auto;min-height:56px;padding:8px 10px 8px 18px;
-  width:100%;max-width:min(960px,100%);margin:0 auto;border-radius:22px;
-  background:linear-gradient(180deg,color-mix(in srgb,var(--fg) 11%,transparent),color-mix(in srgb,var(--fg) 4%,transparent));
-  -webkit-backdrop-filter:blur(18px) saturate(185%);backdrop-filter:blur(18px) saturate(185%);
-  border:1px solid color-mix(in srgb,var(--fg) 14%,transparent);
-  box-shadow:inset 0 1px 0 color-mix(in srgb,var(--fg) 26%,transparent),inset 0 -1px 0 color-mix(in srgb,var(--fg) 8%,transparent),
-    inset 0 0 18px color-mix(in srgb,var(--fg) 5%,transparent),0 14px 34px -14px rgba(0,0,0,.55),0 2px 6px -2px rgba(0,0,0,.25);
-  transition:max-width .5s var(--ease),padding .5s var(--ease),border-radius .5s var(--ease);
-}
-/* üst yansıma ve kenar parlaması */
-.bar .wrap::before{content:"";position:absolute;inset:0;z-index:-1;border-radius:inherit;pointer-events:none;
-  background:radial-gradient(120% 80% at 50% -30%,color-mix(in srgb,var(--fg) 24%,transparent),transparent 60%),
-    linear-gradient(115deg,color-mix(in srgb,var(--fg) 10%,transparent),transparent 35%,transparent 65%,color-mix(in srgb,var(--fg) 7%,transparent))}
-.bar .wrap::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;padding:1px;
-  background:linear-gradient(135deg,color-mix(in srgb,var(--fg) 55%,transparent),color-mix(in srgb,var(--fg) 5%,transparent) 40%,color-mix(in srgb,var(--fg) 16%,transparent));
-  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);mask-composite:exclude}
-@supports (backdrop-filter:url(#x)) and (not (-webkit-hyphens:none)){
-  .bar .wrap{backdrop-filter:url(#glass-refract) blur(14px) saturate(190%)}
-}
-.bar.stuck .wrap{max-width:min(820px,100%);border-radius:18px;padding-top:5px;padding-bottom:5px}
-@media(prefers-reduced-transparency:reduce){.bar .wrap{background:var(--surface);backdrop-filter:none;-webkit-backdrop-filter:none}}
-.mark{display:flex;align-items:center;gap:10px;font-weight:600;letter-spacing:-.02em}
-.mark i{width:9px;height:9px;border-radius:50%;background:var(--live);box-shadow:0 0 0 4px color-mix(in srgb,var(--live) 18%,transparent);animation:beat 2.4s var(--ease) infinite}
-@keyframes beat{50%{opacity:.3}}
-.nav{display:flex;gap:4px;margin-left:auto}
-.nav a{padding:6px 12px;border-radius:999px;font-size:14px;color:var(--muted);transition:color .25s,background .25s}
-.nav a:hover{color:var(--fg);background:var(--line)}
-.clock{font-variant-numeric:tabular-nums}
-.theme-btn{width:36px;height:36px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;transition:border-color .3s,transform .5s var(--spring)}
-.theme-btn:hover{border-color:var(--line-hi);transform:rotate(60deg)}
+.bar-row{max-width:min(960px,100%);margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:10px}
+/* ayrı liquid glass haplar: koyu, sıcak tonlu, düşük opaklıklı beyaz */
+.gl{pointer-events:auto;position:relative;isolation:isolate;display:flex;align-items:center;height:44px;border-radius:999px;
+  background:linear-gradient(180deg,rgba(190,88,25,.13),rgba(255,255,255,.035) 55%,rgba(14,9,6,.5));
+  -webkit-backdrop-filter:blur(18px) saturate(160%);backdrop-filter:blur(18px) saturate(160%);
+  border:1px solid rgba(255,255,255,.09);
+  box-shadow:inset 0 1px 0 rgba(255,214,180,.14),inset 0 -1px 0 rgba(255,255,255,.03),0 12px 28px -14px rgba(0,0,0,.7),0 2px 6px -2px rgba(0,0,0,.3);
+  transition:height .35s var(--ease),box-shadow .35s var(--ease)}
+.gl::before{content:"";position:absolute;inset:0;z-index:-1;border-radius:inherit;pointer-events:none;
+  background:radial-gradient(120% 90% at 50% -40%,rgba(255,170,110,.16),transparent 60%)}
+[data-theme="light"] .gl{background:linear-gradient(180deg,rgba(255,255,255,.62),rgba(255,248,240,.4));border-color:rgba(0,0,0,.08);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.8),0 10px 26px -14px rgba(60,30,10,.35)}
+[data-theme="light"] .gl::before{background:radial-gradient(120% 90% at 50% -40%,rgba(190,88,25,.1),transparent 60%)}
+.bar.stuck .gl{height:38px}
+@media(prefers-reduced-transparency:reduce){.gl{background:var(--surface);backdrop-filter:none;-webkit-backdrop-filter:none}}
+.mark{gap:9px;padding:0 16px 0 7px;font-weight:600;letter-spacing:-.02em;font-size:15px;white-space:nowrap}
+.mark img{width:30px;height:30px;border-radius:9px;flex:none}
+.nav{gap:2px;padding:0 5px}
+.nav a{padding:6px 13px;border-radius:999px;font-size:14px;color:var(--muted);transition:color .25s,background .25s;white-space:nowrap}
+.nav a:hover{color:var(--fg);background:rgba(255,255,255,.08)}
+[data-theme="light"] .nav a:hover{background:rgba(0,0,0,.06)}
+.tools{gap:2px;padding:0 4px}
+.tools .pill,.tools .theme-btn{height:34px;min-width:34px;border:0;background:none;box-shadow:none;border-radius:999px}
+.tools .pill:hover,.tools .theme-btn:hover{background:rgba(255,255,255,.1);transform:none;color:var(--fg)}
+[data-theme="light"] .tools .pill:hover,[data-theme="light"] .tools .theme-btn:hover{background:rgba(0,0,0,.07)}
+.theme-btn{width:34px;height:34px;display:grid;place-items:center;border-radius:50%}
 .theme-btn svg{width:16px;height:16px;stroke:var(--fg);fill:none;stroke-width:1.7;stroke-linecap:round}
-@media(max-width:760px){.nav,.clock{display:none}.acts{margin-left:auto}.bar{padding:8px 8px 0}.bar .wrap{gap:8px;padding:6px 8px 6px 14px}.mark{font-size:14px;min-width:0}}
-@media(max-width:380px){.mark{display:none}.acts{margin-left:0;width:100%;justify-content:space-between}}
+.dcb{gap:8px;padding:0 18px;font-size:14px;font-weight:500;color:var(--fg);white-space:nowrap;transition:background .25s,border-color .25s,color .25s,height .35s var(--ease)}
+.dcb svg{width:16px;height:16px;flex:none}
+.dcb:hover{background:linear-gradient(180deg,#5865f2,#4752c4);border-color:rgba(255,255,255,.25);color:#fff}
+.acts{display:flex;align-items:center;gap:10px}
+@media(max-width:760px){.nav{display:none}.bar{padding:8px 8px 0}.bar-row{gap:8px}.mark{font-size:14px}}
+@media(max-width:560px){.dcb{padding:0;width:44px;justify-content:center}.dcb span{display:none}.bar.stuck .dcb{width:38px}}
+@media(max-width:400px){.mark span{display:none}.mark{padding:0 7px}.acts{gap:6px}}
 
 /* ═══════════ HERO ═══════════ */
 .hero{position:relative;min-height:calc(100svh - 60px);display:flex;flex-direction:column;justify-content:flex-end;padding:clamp(48px,8vh,96px) 0 clamp(32px,5vh,56px);overflow:hidden}
@@ -433,19 +432,20 @@ img{height:auto}
 <!-- ═════════ ÜST ÇUBUK ═════════ -->
 <svg aria-hidden="true" width="0" height="0" style="position:absolute"><defs><filter id="glass-refract" x="0%" y="0%" width="100%" height="100%" color-interpolation-filters="sRGB"><feTurbulence type="fractalNoise" baseFrequency="0.008 0.012" numOctaves="2" seed="7" result="n"/><feGaussianBlur in="n" stdDeviation="2" result="s"/><feDisplacementMap in="SourceGraphic" in2="s" scale="18" xChannelSelector="R" yChannelSelector="G"/></filter></defs></svg>
 <div class="bar" id="bar">
-  <div class="wrap">
-    <a class="mark" href="#top" aria-label="Başa dön"><i></i>eymen.akts.tr</a>
-    <nav class="nav" aria-label="Bölümler">
+  <div class="bar-row">
+    <a class="gl mark" href="#top" aria-label="Başa dön"><img src="assets/favicon.svg" alt="" width="30" height="30">eymen.akts.tr</a>
+    <nav class="gl nav" aria-label="Bölümler">
       <a href="#is">İşler</a><a href="#roller">Roller</a><a href="#hakkinda">Hakkında</a><a href="#iletisim">İletişim</a>
     </nav>
-    <span class="mono clock" id="clock" title="Türkiye saati">TR --:--</span>
     <div class="acts">
+    <div class="gl tools">
       <a class="pill" href="https://github.com/eymenaktas" target="_blank" rel="noopener" aria-label="GitHub"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.05-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.56-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.42-2.69 5.39-5.25 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5Z"/></svg></a>
       <a class="pill" href="mailto:eymen@akts.tr" aria-label="E-posta gönder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="m4 7 8 6 8-6"/></svg></a>
-      <a class="pill dc" id="dcNav" href="https://discord.com/users/1507392064206278919" target="_blank" rel="noopener" aria-label="Discord"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.32 4.37A19.8 19.8 0 0 0 15.39 2.84a.07.07 0 0 0-.08.04c-.21.38-.45.87-.61 1.25a18.3 18.3 0 0 0-5.49 0 12.6 12.6 0 0 0-.62-1.25.08.08 0 0 0-.08-.04 19.7 19.7 0 0 0-4.93 1.53.07.07 0 0 0-.03.03C.53 9.05-.32 13.58.1 18.06a.08.08 0 0 0 .03.06 19.9 19.9 0 0 0 6 3.03.08.08 0 0 0 .08-.03c.46-.63.87-1.3 1.23-1.99a.08.08 0 0 0-.04-.11 13.1 13.1 0 0 1-1.87-.89.08.08 0 0 1-.01-.13l.37-.29a.07.07 0 0 1 .08-.01c3.93 1.79 8.18 1.79 12.06 0a.07.07 0 0 1 .08.01l.37.29a.08.08 0 0 1 0 .13c-.6.35-1.22.64-1.87.89a.08.08 0 0 0-.04.11c.36.7.78 1.36 1.23 1.99a.08.08 0 0 0 .08.03 19.8 19.8 0 0 0 6-3.03.08.08 0 0 0 .03-.06c.5-5.18-.84-9.67-3.55-13.66a.06.06 0 0 0-.03-.03ZM8.02 15.33c-1.18 0-2.16-1.08-2.16-2.42 0-1.33.96-2.42 2.16-2.42 1.21 0 2.18 1.1 2.16 2.42 0 1.34-.96 2.42-2.16 2.42Zm7.97 0c-1.18 0-2.15-1.08-2.15-2.42 0-1.33.95-2.42 2.15-2.42 1.21 0 2.18 1.1 2.16 2.42 0 1.34-.95 2.42-2.16 2.42Z"/></svg><span>Discord</span></a>
-    <button class="theme-btn" id="themeBtn" aria-label="Temayı değiştir">
+      <button class="theme-btn" id="themeBtn" aria-label="Temayı değiştir">
       <svg viewBox="0 0 24 24" id="themeIcon"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2M12 19.5v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M2.5 12h2M19.5 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4"/></svg>
     </button>
+        </div>
+      <a class="gl dcb" id="dcNav" href="https://discord.com/users/1507392064206278919" target="_blank" rel="noopener" aria-label="Discord"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.32 4.37A19.8 19.8 0 0 0 15.39 2.84a.07.07 0 0 0-.08.04c-.21.38-.45.87-.61 1.25a18.3 18.3 0 0 0-5.49 0 12.6 12.6 0 0 0-.62-1.25.08.08 0 0 0-.08-.04 19.7 19.7 0 0 0-4.93 1.53.07.07 0 0 0-.03.03C.53 9.05-.32 13.58.1 18.06a.08.08 0 0 0 .03.06 19.9 19.9 0 0 0 6 3.03.08.08 0 0 0 .08-.03c.46-.63.87-1.3 1.23-1.99a.08.08 0 0 0-.04-.11 13.1 13.1 0 0 1-1.87-.89.08.08 0 0 1-.01-.13l.37-.29a.07.07 0 0 1 .08-.01c3.93 1.79 8.18 1.79 12.06 0a.07.07 0 0 1 .08.01l.37.29a.08.08 0 0 1 0 .13c-.6.35-1.22.64-1.87.89a.08.08 0 0 0-.04.11c.36.7.78 1.36 1.23 1.99a.08.08 0 0 0 .08.03 19.8 19.8 0 0 0 6-3.03.08.08 0 0 0 .03-.06c.5-5.18-.84-9.67-3.55-13.66a.06.06 0 0 0-.03-.03ZM8.02 15.33c-1.18 0-2.16-1.08-2.16-2.42 0-1.33.96-2.42 2.16-2.42 1.21 0 2.18 1.1 2.16 2.42 0 1.34-.96 2.42-2.16 2.42Zm7.97 0c-1.18 0-2.15-1.08-2.15-2.42 0-1.33.95-2.42 2.15-2.42 1.21 0 2.18 1.1 2.16 2.42 0 1.34-.95 2.42-2.16 2.42Z"/></svg><span>Discord</span></a>
     </div>
   </div>
 </div>
@@ -851,7 +851,6 @@ const dcCiz = v => {
   }
   dc.rest.innerHTML = h;
   const hedef = guvenliUrl(v.sunucu && v.sunucu.davet) || DC_PROFIL;
-  dc.nav.href = hedef;
   dc.btn.href = k.id && /^\d+$/.test(k.id) ? `https://discord.com/users/${k.id}` : DC_PROFIL;
   dcTik();
 };
@@ -912,10 +911,6 @@ document.querySelectorAll(".role").forEach(c => c.addEventListener("pointermove"
 }));
 
 /* ─────────── 6. SAAT + YIL ─────────── */
-const clock = document.getElementById("clock");
-const fmt = new Intl.DateTimeFormat("tr-TR", { timeZone: "Europe/Istanbul", hour: "2-digit", minute: "2-digit" });
-const tickClock = () => clock.textContent = "TR " + fmt.format(new Date());
-tickClock(); setInterval(tickClock, 15000);
 document.getElementById("year").textContent = new Date().getFullYear();
 
 /* ─────────── 7. TEMA ─────────── */
