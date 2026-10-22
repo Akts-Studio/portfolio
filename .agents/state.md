@@ -49,3 +49,6 @@ Yeşil nokta kalktı, logo (favicon E) hapı; logo / bağlantılar / araçlar(Gi
 
 ## 2026-10-22 navbar yok olma + içerik (claude, CANLI, cafa0f3)
 Navbar `position:fixed` (sticky + backdrop-filter kareleri düşürüyordu: 34/227 karede çubuk yoktu → 0/234). "İşler" → "Projelerim". Logo: Akts "A" (og görselindeki Eymen logosu; kişisel başka logo bulunamadı, emin değilim). theme-color #e6742e. TrCore kapalı kaynak (depo private), OyunHub 20 seçkin oyun, Maske Packs kartı, Aktaş Fit öne çıkan 3. kart, sayaçlar 13 proje / 3 Android. Yükleme ekranı (≤1.5 sn).
+
+## 2026-10-22 tur 3 (claude, CANLI)
+Reveal: eşik .05 + rootMargin 15% alt, süreler .4-.55 sn, stagger 35 ms, tek seferlik (unobserve). Öne çıkan kartlar zikzak. Maske Packs kartı kaldırıldı (12 proje). Logo Snoopy (profile.webp). Projelerim = #is sarmalayıcı (öne çıkan + #dizin). Sayfa sonunda İletişim aktif. Yükleme ekranı görselleri önden çözer, hero/dot-field kapanıştan sonra. Boş kart örnekleri 87→5.
