@@ -52,3 +52,6 @@ Navbar `position:fixed` (sticky + backdrop-filter kareleri düşürüyordu: 34/2
 
 ## 2026-10-22 tur 3 (claude, CANLI)
 Reveal: eşik .05 + rootMargin 15% alt, süreler .4-.55 sn, stagger 35 ms, tek seferlik (unobserve). Öne çıkan kartlar zikzak. Maske Packs kartı kaldırıldı (12 proje). Logo Snoopy (profile.webp). Projelerim = #is sarmalayıcı (öne çıkan + #dizin). Sayfa sonunda İletişim aktif. Yükleme ekranı görselleri önden çözer, hero/dot-field kapanıştan sonra. Boş kart örnekleri 87→5.
+
+## 2026-10-22 reveal v3 (claude, CANLI)
+rootMargin 0 0 40% 0, threshold 0, süre .3 sn (yalnız opacity+transform), kalıcı will-change yok. Hızlı kaydırmada görünüm alanının üstünde kalan öğeler anında (.instant) gösteriliyor. Boş kart örneği 0/276.

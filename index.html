@@ -99,7 +99,7 @@ img{display:block;max-width:100%}
 [data-theme="light"] .gl{background:linear-gradient(180deg,rgba(255,255,255,.62),rgba(255,248,240,.4));border-color:rgba(0,0,0,.08);
   box-shadow:inset 0 1px 0 rgba(255,255,255,.8),0 10px 26px -14px rgba(60,30,10,.35)}
 [data-theme="light"] .gl::before{background:radial-gradient(120% 90% at 50% -40%,rgba(190,88,25,.1),transparent 60%)}
-.bar-row{transform-origin:50% 0;transition:transform .45s var(--ease);will-change:transform}
+.bar-row{transform-origin:50% 0;transition:transform .45s var(--ease)}
 .bar.stuck .bar-row{transform:translate3d(0,-2px,0) scale(.965,.94)}
 @media(prefers-reduced-transparency:reduce){.gl{background:var(--surface);backdrop-filter:none;-webkit-backdrop-filter:none}}
 .mark{gap:9px;padding:0 16px 0 7px;font-weight:600;letter-spacing:-.02em;font-size:15px;white-space:nowrap}
@@ -185,7 +185,7 @@ section{padding:clamp(80px,12vw,150px) 0 0}
 .sec-head h2{font-size:clamp(36px,6vw,76px);font-weight:600;letter-spacing:-.05em;line-height:.95}
 .sec-head h2 span{color:var(--dim)}
 @media(max-width:760px){.sec-head{grid-template-columns:1fr;gap:10px}}
-.rv{opacity:0;transform:translateY(20px);transition:opacity .4s var(--ease),transform .4s var(--ease)}
+.rv{opacity:0;transform:translateY(20px);transition:opacity .3s var(--ease),transform .3s var(--ease)}
 .rv.in{opacity:1;transform:none}
 
 /* ═══════════ ÖNE ÇIKANLAR ═══════════ */
@@ -347,10 +347,11 @@ img{height:auto}
 @keyframes ignite{0%{filter:brightness(2.1) drop-shadow(0 0 18px rgb(var(--brand-rgb)/.9))}100%{filter:drop-shadow(0 0 5px rgb(var(--brand-rgb)/.32))}}
 
 /* dağıtılma girişi */
-.rv.deal{transform:translateY(60px) scale(.94) rotate(-2deg);transition:opacity .4s var(--ease),transform .55s cubic-bezier(.2,1.02,.3,1),box-shadow .55s var(--ease),border-color .4s}
+.rv.deal{transform:translateY(60px) scale(.94) rotate(-2deg);transition:opacity .3s var(--ease),transform .45s cubic-bezier(.2,1.02,.3,1),box-shadow .55s var(--ease),border-color .4s}
 .rv.deal.in{transform:none}
+.rv.instant,.rv.instant h2{transition:none!important}
 .rv.deal.in.settled{transition:transform .55s var(--ease),box-shadow .55s var(--ease),border-color .4s}
-.sec-head.rv h2{transform:translateY(30%);transition:transform .5s var(--ease)}
+.sec-head.rv h2{transform:translateY(30%);transition:transform .35s var(--ease)}
 .sec-head.rv.in h2{transform:none}
 
 /* parlak hap butonlar */
@@ -936,15 +937,27 @@ dcYokla();
 setInterval(() => { if (!document.hidden) dcYokla(); }, 30000);
 
 /* ─────────── 5. KAYDIRMA ─────────── */
-const io = new IntersectionObserver(es => es.forEach(e => {
-  if (!e.isIntersecting) return;
-  const sibs = [...e.target.parentElement.children].filter(c => c.classList.contains("rv"));
-  e.target.style.transitionDelay = Math.min(sibs.indexOf(e.target), 4) * 35 + "ms";
-  e.target.classList.add("in"); io.unobserve(e.target);
+const pending = new Set(document.querySelectorAll(".rv"));
+const reveal = (el, instant) => {
+  if (!pending.delete(el)) return;
+  io.unobserve(el);
+  if (instant) el.classList.add("instant");
+  else {
+    const sibs = [...el.parentElement.children].filter(c => c.classList.contains("rv"));
+    el.style.transitionDelay = Math.min(sibs.indexOf(el), 3) * 30 + "ms";
+  }
+  el.classList.add("in");
   // Giriş bitince gecikmeyi sil: yoksa hover tepkisi de kademeli gecikirdi.
-  if (e.target.classList.contains("deal")) setTimeout(() => { e.target.style.transitionDelay = ""; e.target.classList.add("settled"); }, 900);
-}), { threshold: .05, rootMargin: "0px 0px 15% 0px" });
-document.querySelectorAll(".rv").forEach(el => io.observe(el));
+  if (el.classList.contains("deal")) setTimeout(() => { el.style.transitionDelay = ""; el.classList.add("settled"); }, 700);
+};
+// Geniş alt marj: öğe ekrana girmeden önce animasyon başlar; threshold 0.
+const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) reveal(e.target, e.boundingClientRect.bottom < 0); }),
+  { threshold: 0, rootMargin: "0px 0px 40% 0px" });
+pending.forEach(el => io.observe(el));
+// Hızlı kaydırma: görünüm alanının üstünde kalıp hiç kesişmemiş öğeler animasyonsuz hemen görünür.
+let sweepRaf = 0;
+const sweep = () => { sweepRaf = 0; for (const el of pending) if (el.getBoundingClientRect().bottom < 0) reveal(el, true); };
+addEventListener("scroll", () => { if (pending.size && !sweepRaf) sweepRaf = requestAnimationFrame(sweep); }, { passive: true });
 
 const bar = document.getElementById("bar");
 {
