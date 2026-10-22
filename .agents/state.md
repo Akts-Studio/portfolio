@@ -43,3 +43,6 @@ Navbar yüzen liquid glass kapsül yapıldı (backdrop blur+saturate, kenar parl
 
 ## 2026-10-22 navbar ayrı haplar (claude)
 Yeşil nokta kalktı, logo (favicon E) hapı; logo / bağlantılar / araçlar(GitHub, mail, tema) / Discord ayrı koyu sıcak cam haplar. SVG kırılma filtresi (titreme), max-width geçişi ve saat kaldırıldı; kaydırınca yalnız yükseklik küçülür. Discord bağlantısı sabit profil linki. CANLI (yedek: index.html.yedek-*).
+
+## 2026-10-22 navbar gösterge (claude, CANLI, 3f63ecb)
+`.gl` height geçişi kalktı (kaydırınca .bar-row transform scale), rAF'lı scroll; landing ile aynı BlankReel tarzı kayan cam gösterge (#navInd). Ölçüm: layout 27→4, recalc 152→38 ms. Yedek sunucuda index.html.yedek-20261022-nav.

@@ -25,7 +25,7 @@
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
 <!-- Discord bağlantı önizlemesinin yan şeridi bu rengi kullanır. -->
-<meta name="theme-color" content="#8b6cff" />
+<meta name="theme-color" content="#e6742e" />
 <style>
 /* ═══════════ TOKENLAR ═══════════ */
 :root{
@@ -84,8 +84,9 @@ img{display:block;max-width:100%}
 [data-theme="light"] .grain{opacity:.07}
 
 /* ═══════════ ÜST ÇUBUK ═══════════ */
-.bar{position:sticky;top:0;z-index:50;padding:12px 12px 0;pointer-events:none}
-.bar-row{max-width:min(960px,100%);margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:10px}
+.bar{position:relative;z-index:50;height:56px;pointer-events:none}
+/* position:fixed (sticky + backdrop-filter kaydırırken kareleri düşürüp çubuğu yok ediyordu) */
+.bar-row{position:fixed;top:12px;left:12px;right:12px;max-width:960px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:10px}
 /* ayrı liquid glass haplar: koyu, sıcak tonlu, düşük opaklıklı beyaz */
 .gl{pointer-events:auto;position:relative;isolation:isolate;display:flex;align-items:center;height:44px;border-radius:999px;
   background:linear-gradient(180deg,rgba(190,88,25,.13),rgba(255,255,255,.035) 55%,rgba(14,9,6,.5));
@@ -124,7 +125,7 @@ img{display:block;max-width:100%}
 .dcb svg{width:16px;height:16px;flex:none}
 .dcb:hover{background:linear-gradient(180deg,#5865f2,#4752c4);border-color:rgba(255,255,255,.25);color:#fff}
 .acts{display:flex;align-items:center;gap:10px}
-@media(max-width:760px){.nav{display:none}.bar{padding:8px 8px 0}.bar-row{gap:8px}.mark{font-size:14px}}
+@media(max-width:760px){.nav{display:none}.bar{height:52px}.bar-row{top:8px;left:8px;right:8px;gap:8px}.mark{font-size:14px}}
 @media(max-width:560px){.dcb{padding:0;width:44px;justify-content:center}.dcb span{display:none}}
 @media(max-width:400px){.mark span{display:none}.mark{padding:0 7px}.acts{gap:6px}}
 
@@ -188,8 +189,9 @@ section{padding:clamp(80px,12vw,150px) 0 0}
 .rv.in{opacity:1;transform:none}
 
 /* ═══════════ ÖNE ÇIKANLAR ═══════════ */
-.feature{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-@media(max-width:860px){.feature{grid-template-columns:1fr}}
+.feature{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+@media(max-width:1000px){.feature{grid-template-columns:1fr}}
+@media(min-width:1001px){.ft-body{flex-direction:column;gap:12px}}
 .ft{position:relative;display:flex;flex-direction:column;border-radius:28px;overflow:hidden;border:1px solid var(--line);background:var(--surface);isolation:isolate;
   transition:transform .6s var(--ease),border-color .4s}
 .ft:hover{transform:translateY(-6px);border-color:var(--line-hi)}
@@ -431,9 +433,18 @@ img{height:auto}
   .rv.deal,.sec-head.rv h2{transform:none;filter:none}
   .fx-sheen,.fx-arc{display:none}
 }
+#boot{position:fixed;inset:0;z-index:200;display:grid;place-items:center;background:var(--bg,#0a0a0a);transition:opacity .35s ease,visibility .35s}
+#boot.done{opacity:0;visibility:hidden;pointer-events:none}
+#boot .lg{width:64px;height:64px;border-radius:16px;animation:bootpop 1.1s var(--ease,ease) infinite alternate}
+#boot .ring{position:absolute;width:104px;height:104px;border-radius:50%;border:2px solid rgba(255,255,255,.08);border-top-color:#e6742e;animation:bootspin .9s linear infinite}
+@keyframes bootpop{from{transform:scale(.94);opacity:.8}to{transform:scale(1);opacity:1}}
+@keyframes bootspin{to{transform:rotate(360deg)}}
+@media(prefers-reduced-motion:reduce){#boot .lg,#boot .ring{animation:none}#boot{transition-duration:.01s}}
 </style>
+<noscript><style>#boot{display:none}</style></noscript>
 </head>
 <body>
+<div id="boot" aria-hidden="true"><span class="ring"></span><img class="lg" src="assets/akts-studio.svg" alt="" width="64" height="64"></div>
 <div class="stars" id="stars" aria-hidden="true"></div>
 <div class="grain" aria-hidden="true"></div>
 
@@ -441,9 +452,9 @@ img{height:auto}
 <svg aria-hidden="true" width="0" height="0" style="position:absolute"><defs><filter id="glass-refract" x="0%" y="0%" width="100%" height="100%" color-interpolation-filters="sRGB"><feTurbulence type="fractalNoise" baseFrequency="0.008 0.012" numOctaves="2" seed="7" result="n"/><feGaussianBlur in="n" stdDeviation="2" result="s"/><feDisplacementMap in="SourceGraphic" in2="s" scale="18" xChannelSelector="R" yChannelSelector="G"/></filter></defs></svg>
 <div class="bar" id="bar">
   <div class="bar-row">
-    <a class="gl mark" href="#top" aria-label="Başa dön"><img src="assets/favicon.svg" alt="" width="30" height="30">eymen.akts.tr</a>
+    <a class="gl mark" href="#top" aria-label="Başa dön"><img src="assets/akts-studio.svg" alt="" width="30" height="30">eymen.akts.tr</a>
     <nav class="gl nav" id="navList" aria-label="Bölümler"><span class="nav-ind" id="navInd" aria-hidden="true"></span>
-      <a href="#is">İşler</a><a href="#roller">Roller</a><a href="#hakkinda">Hakkında</a><a href="#iletisim">İletişim</a>
+      <a href="#is">Projelerim</a><a href="#roller">Roller</a><a href="#hakkinda">Hakkında</a><a href="#iletisim">İletişim</a>
     </nav>
     <div class="acts">
     <div class="gl tools">
@@ -473,8 +484,8 @@ img{height:auto}
         <p class="aka">aka <b>Nemy</b> — vibe coder, hızlı dener, çalışanı tutar.</p>
       </div>
       <dl class="stats fade" style="transition-delay:.7s">
-        <div><b data-count="10">0</b><span>yayında proje</span></div>
-        <div><b data-count="2">0</b><span>Android uygulaması</span></div>
+        <div><b data-count="13">0</b><span>yayında proje</span></div>
+        <div><b data-count="3">0</b><span>Android uygulaması</span></div>
         <div><b data-count="1">0</b><span>kendi sunucum</span></div>
       </dl>
     </div>
@@ -519,6 +530,22 @@ img{height:auto}
           <h3>StudyTrack</h3>
           <p>Pomodoro, günlük hedef, seri ve rozetler. Expo + React Native, widget'lar ve saat uygulaması native Kotlin.</p>
           <div class="chips"><span>Android</span><span>Wear OS</span><span>Web</span></div>
+        </div>
+      </div>
+    </a>
+    <a class="ft rv deal" style="--brand:#bb2a2a" href="https://fit.akts.tr" target="_blank" rel="noopener">
+      <div class="ft-art">
+        <div class="halo" style="background:radial-gradient(120% 90% at 50% 0%,#4a1414,#2a0b0b 55%,#120505)"></div>
+        <span class="ft-num">AKTAŞ FİT · ANDROID</span>
+        <span class="ft-go"><svg viewBox="0 0 24 24"><path d="M7 17 17 7M17 7H8M17 7v9"/></svg></span>
+        <div class="phone" style="--r:-3deg"><div><img src="https://akts.tr/shots/aktasfit.webp?v=3" alt="Aktaş Fit ekranı" width="234" height="507" loading="lazy" decoding="async" /><i></i></div></div>
+      </div>
+      <div class="ft-body">
+        <img class="ic" src="https://fit.akts.tr/icon.svg" width="52" height="52" loading="lazy" alt="" />
+        <div>
+          <h3>Aktaş Fit</h3>
+          <p>Fotoğraftan kalori, saatinden ölçülen yakım ve her gün yeniden dengelenen hedef. Kotlin + Jetpack Compose.</p>
+          <div class="chips"><span>Android</span><span>Yapay zekâ</span><span>Widget</span></div>
         </div>
       </div>
     </a>
@@ -668,7 +695,7 @@ const PROJECTS = [
     logo:`<rect width="64" height="64" rx="15" fill="#ff4d1f"/><path transform="translate(12 12) scale(1.667)" d="M6 11h4 M8 9v4 M15 12h.01 M18 10h.01 M17.32 5H6.68a4 4 0 0 0-3.978 3.59c-.006.052-.01.101-.017.152C2.604 9.416 2 14.456 2 16a3 3 0 0 0 3 3c1 0 1.5-.5 2-1l1.414-1.414A2 2 0 0 1 9.828 16h4.344a2 2 0 0 1 1.414.586L17 18c.5.5 1 1 2 1a3 3 0 0 0 3-3c0-1.545-.604-6.584-.685-7.258-.007-.05-.011-.1-.017-.151A4 4 0 0 0 17.32 5z" fill="none" stroke="#140a05" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>`,
     name:"OyunHub", badge:"Gizli", brand:"#ff4d1f",
     url:"https://oyun.akts.tr",
-    desc:"40 oyunluk Türkçe oyun portalı; 32'sini sıfırdan yazdım. İndirme ve üyelik yok, tamamı tarayıcıda çalışıyor. Vite + React + Tailwind."
+    desc:"En çok oynanan ve beğenilen 20 oyunluk seçki: Türkçe oyun portalı. Yerleşik oyunların bir kısmını sıfırdan yazdım; gerisi açık lisanslı HTML5 oyunlar. İndirme ve üyelik yok, tamamı tarayıcıda çalışıyor. Vite + React + Tailwind."
   },
   {
     logo:`<defs><clipPath id="c-studytrack"><rect width="64" height="64" rx="15"/></clipPath></defs><image href="assets/studytrack.webp?v=3" width="64" height="64" clip-path="url(#c-studytrack)"/>`,
@@ -695,10 +722,15 @@ const PROJECTS = [
     desc:"Kodla kısa video üretimi: TikTok, Shorts ve Reels için dikey 1080p 60 FPS videoyu API'den tek istekle render ediyor. Next.js + Remotion, Supabase, QStash kuyruğu; n8n ve Make.com'a webhook ile bağlanıyor."
   },
   {
+    logo:`<rect width="64" height="64" rx="15" fill="#0a0a0a"/><rect x="1" y="1" width="62" height="62" rx="14" fill="none" stroke="#ffffff" stroke-opacity=".14" stroke-width="2"/><defs><linearGradient id="g-maske" gradientUnits="userSpaceOnUse" x1="14" y1="12" x2="50" y2="52"><stop offset="0" stop-color="#7aa7ff"/><stop offset="1" stop-color="#b57aff"/></linearGradient></defs><g fill="none" stroke="url(#g-maske)" stroke-width="5.4" stroke-linecap="round" stroke-linejoin="round"><path d="M16 46 V18 L32 34 L48 18 V46"/></g>`,
+    name:"Maske Packs", badge:"Web", brand:"#7aa7ff",
+    url:"https://maskepacks.com",
+    desc:"Maske CPvP kaynak paketini kendi renginle kuran site: 9 renk teması, 3D/2D kristal, küçük eşyalar, sürüm seçimi (1.20 – 26.3). Seçimler kısa bir koda dönüşür, aynı kod aynı paketi indirir. Paket tarayıcıda kurulur."
+  },
+  {
     logo:`<img src="assets/trprac.webp" alt="" loading="lazy">`,
-    name:"TrCore", badge:"Açık kaynak", brand:"#22c55e",
-    repo:"https://github.com/Akts-Studio/trCore",
-    desc:"TrPrac altyapısının çekirdek eklentisi. Paper için Java."
+    name:"TrCore", badge:"Kapalı kaynak", brand:"#22c55e",
+    desc:"TrPrac altyapısının çekirdek eklentisi. Paper için Java. Kaynak kodu paylaşılmıyor."
   },
   {
     logo:`<img src="assets/trprac.webp" alt="" loading="lazy">`,
@@ -964,6 +996,13 @@ btn.addEventListener("click", () => {
 import { mountDotField } from "./assets/dot-field.js?v=1";
 const el = document.querySelector("[data-dotfield]");
 if (el) mountDotField(el);
+</script>
+<script>
+// Yükleme ekranı: fontlar + sayfa hazır olunca (en az .4 sn, en fazla 1.5 sn) kapanır.
+(() => { const b = document.getElementById("boot"), t0 = performance.now(); let closed = false;
+  const close = () => { if (closed) return; closed = true; const w = Math.max(0, 400 - (performance.now() - t0)); setTimeout(() => { b.classList.add("done"); setTimeout(() => b.remove(), 500); }, w); };
+  Promise.all([document.fonts ? document.fonts.ready : 0, new Promise(r => document.readyState === "complete" ? r() : addEventListener("load", r, { once: true }))]).then(close);
+  setTimeout(close, 1500); })();
 </script>
 </body>
 </html>
