@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="tr" data-theme="dark">
+<html lang="tr" data-theme="dark" data-scroll-oran="0.5">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -299,6 +299,13 @@ section{padding:clamp(80px,12vw,150px) 0 0}
 .socials a:hover svg.ar{transform:translate(3px,-3px)}
 @media(max-width:860px){.socials{grid-template-columns:1fr 1fr}.socials a:nth-child(3){padding-left:0;border-left:0}}
 @media(max-width:480px){.socials{grid-template-columns:1fr}.socials a+a{padding-left:0;border-left:0}}
+/* Katmanlı footer: üç kat aynı kelime; scroll-katman.js data-sk="kat" ile ayırır. */
+.fstack{position:relative;margin:56px 0 0;height:clamp(110px,24vw,300px);overflow:hidden;pointer-events:none;user-select:none}
+.fstack span{position:absolute;left:-.04em;bottom:-.13em;font-size:clamp(130px,30vw,380px);font-weight:700;letter-spacing:-.07em;line-height:1;white-space:nowrap}
+.fstack .k3{color:transparent;-webkit-text-stroke:1px var(--line);-webkit-text-stroke-color:color-mix(in srgb,var(--fg) 14%,transparent)}
+.fstack .k2{color:transparent;-webkit-text-stroke:1.5px color-mix(in srgb,var(--accent) 55%,transparent)}
+.fstack .k1{color:var(--fg);background:linear-gradient(180deg,var(--fg) 30%,color-mix(in srgb,var(--fg) 0%,transparent) 105%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.fstack .k1 b{font-weight:inherit;-webkit-text-fill-color:var(--accent)}
 footer{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding:32px 0 40px}
 footer nav{display:flex;gap:18px}
 footer a:hover{color:var(--fg)}
@@ -480,8 +487,8 @@ img{height:auto}
 
 <!-- ═════════ HERO ═════════ -->
 <header class="hero" id="top">
-  <div class="hero-orbit" aria-hidden="true" data-dotfield></div>
-  <div class="wrap" style="position:relative;z-index:1">
+  <div class="hero-orbit" aria-hidden="true" data-dotfield data-sk="arka"></div>
+  <div class="wrap" style="position:relative;z-index:1" data-sk="cik">
     <div class="hero-top fade" style="transition-delay:.1s">
       <div class="avatar"><img src="assets/profile.webp?v=3" width="52" height="52" fetchpriority="high" decoding="async" alt="Eymen'in profil fotoğrafı" onerror="this.replaceWith(document.createTextNode('E'))" /></div>
       <span class="status"><i></i>Şu an <b>Ecstacy Anticheat</b> · Media Manager</span>
@@ -508,14 +515,14 @@ img{height:auto}
 
 <!-- ═════════ ÖNE ÇIKANLAR ═════════ -->
 <div id="is"><section>
-  <div class="sec-head rv"><span class="mono">01 — Öne çıkan</span><h2>Telefonunda<br><span>çalışan işler.</span></h2></div>
+  <div class="sec-head rv"><span class="mono">01 — Öne çıkan</span><h2 data-sk="kay">Telefonunda<br><span>çalışan işler.</span></h2></div>
   <div class="feature">
     <a class="ft rv deal" style="--brand:#f0ce72" href="https://ezan.akts.tr" target="_blank" rel="noopener">
       <div class="ft-art">
         <div class="halo" style="background:radial-gradient(120% 90% at 50% 0%,#1d6b52,#0b3b2e 55%,#05170f)"></div>
         <span class="ft-num">MEHTAPP · ANDROID</span>
         <span class="ft-go"><svg viewBox="0 0 24 24"><path d="M7 17 17 7M17 7H8M17 7v9"/></svg></span>
-        <div class="phone" style="--r:-4deg"><div><img src="https://akts.tr/shots/mehtapp.webp?v=3" alt="MehtApp ekranı" width="234" height="507" loading="lazy" decoding="async" /><i></i></div></div>
+        <div data-sk="derin" class="phone" style="--r:-4deg"><div><img src="https://akts.tr/shots/mehtapp.webp?v=3" alt="MehtApp ekranı" width="234" height="507" loading="lazy" decoding="async" /><i></i></div></div>
       </div>
       <div class="ft-body">
         <img class="ic" src="https://ezan.akts.tr/img/icon-180.png" width="52" height="52" loading="lazy" alt="" />
@@ -531,7 +538,7 @@ img{height:auto}
         <div class="halo" style="background:radial-gradient(120% 90% at 50% 0%,#eaf4ed,#c7ddcf 60%,#8fbca1)"></div>
         <span class="ft-num" style="color:rgba(10,40,25,.7)">STUDYTRACK · ANDROID</span>
         <span class="ft-go" style="background:rgba(10,40,25,.12);color:#0a2819"><svg viewBox="0 0 24 24"><path d="M7 17 17 7M17 7H8M17 7v9"/></svg></span>
-        <div class="phone" style="--r:4deg"><div><img src="https://akts.tr/shots/studytrack.webp?v=3" alt="StudyTrack ekranı" width="234" height="507" loading="lazy" decoding="async" /><i></i></div></div>
+        <div data-sk="derin" class="phone" style="--r:4deg"><div><img src="https://akts.tr/shots/studytrack.webp?v=3" alt="StudyTrack ekranı" width="234" height="507" loading="lazy" decoding="async" /><i></i></div></div>
       </div>
       <div class="ft-body">
         <img class="ic" src="assets/studytrack.webp?v=3" width="52" height="52" loading="lazy" alt="" />
@@ -547,7 +554,7 @@ img{height:auto}
         <div class="halo" style="background:radial-gradient(120% 90% at 50% 0%,#4a1414,#2a0b0b 55%,#120505)"></div>
         <span class="ft-num">AKTAŞ FİT · ANDROID</span>
         <span class="ft-go"><svg viewBox="0 0 24 24"><path d="M7 17 17 7M17 7H8M17 7v9"/></svg></span>
-        <div class="phone" style="--r:-3deg"><div><img src="https://akts.tr/shots/aktasfit.webp?v=3" alt="Aktaş Fit ekranı" width="234" height="507" loading="lazy" decoding="async" /><i></i></div></div>
+        <div data-sk="derin" class="phone" style="--r:-3deg"><div><img src="https://akts.tr/shots/aktasfit.webp?v=3" alt="Aktaş Fit ekranı" width="234" height="507" loading="lazy" decoding="async" /><i></i></div></div>
       </div>
       <div class="ft-body">
         <img class="ic" src="https://fit.akts.tr/icon.svg" width="52" height="52" loading="lazy" alt="" />
@@ -563,14 +570,14 @@ img{height:auto}
 
 <!-- ═════════ PROJE DİZİNİ ═════════ -->
 <section id="dizin">
-  <div class="sec-head rv"><span class="mono">02 — Dizin</span><h2>Bütün projeler<span>.</span></h2></div>
+  <div class="sec-head rv"><span class="mono">02 — Dizin</span><h2 data-sk="kay">Bütün projeler<span>.</span></h2></div>
   <div class="index" id="index"></div>
 </section>
 </div>
 
 <!-- ═════════ ROLLER ═════════ -->
 <section id="roller">
-  <div class="sec-head rv"><span class="mono">03 — Roller</span><h2>Ekiplerde<br><span>üstlendiklerim.</span></h2></div>
+  <div class="sec-head rv"><span class="mono">03 — Roller</span><h2 data-sk="kay">Ekiplerde<br><span>üstlendiklerim.</span></h2></div>
   <div class="roles">
     <article class="role rv deal" style="--brand:var(--c);--c:#f27625">
       <div class="role-top"><img src="assets/paketsoft.svg" width="48" height="48" loading="lazy" alt="PaketSoft logosu" style="padding:6px;object-fit:contain" /><div><h3>PaketSoft</h3><div class="t">Kurucu &amp; Developer</div></div><span class="pill-s on">Aktif</span></div>
@@ -605,7 +612,7 @@ img{height:auto}
 
 <!-- ═════════ HAKKINDA ═════════ -->
 <section id="hakkinda">
-  <div class="sec-head rv"><span class="mono">04 — Hakkında</span><h2>İki dünya<span>, tek masa.</span></h2></div>
+  <div class="sec-head rv"><span class="mono">04 — Hakkında</span><h2 data-sk="kay">İki dünya<span>, tek masa.</span></h2></div>
   <div class="about">
     <div class="about-side">
     <blockquote class="big-quote rv">“Konuşmak ucuzdur. <span>Bana kodu göster.”</span><cite class="mono">— Linus Torvalds</cite></blockquote>
@@ -645,6 +652,11 @@ img{height:auto}
     <a href="https://github.com/Akts-Studio" target="_blank" rel="noopener" style="--brand:#e0484a"><span style="display:flex;align-items:center;gap:10px"><img src="https://akts.tr/brand/akts-studio.svg" alt="" width="18" height="18" style="border-radius:5px;flex:none"><span><small>Stüdyo</small>Akts Studio</span></span><svg class="ar" viewBox="0 0 24 24"><path d="M7 17 17 7M17 7H8M17 7v9"/></svg></a>
     <a href="https://discord.com/users/1507392064206278919" target="_blank" rel="noopener" style="--brand:#7b86ff"><span><small>Discord</small>nemy</span><svg class="ar" viewBox="0 0 24 24"><path d="M7 17 17 7M17 7H8M17 7v9"/></svg></a>
     <a href="https://akts.tr" target="_blank" rel="noopener"><span><small>Ana site</small>akts.tr</span><svg class="ar" viewBox="0 0 24 24"><path d="M7 17 17 7M17 7H8M17 7v9"/></svg></a>
+  </div>
+  <div class="fstack" aria-hidden="true">
+    <span class="k3" data-sk="kat" data-sk-d="3">Nemy.</span>
+    <span class="k2" data-sk="kat" data-sk-d="2">Nemy.</span>
+    <span class="k1" data-sk="kat" data-sk-d="1">Nemy<b>.</b></span>
   </div>
   <!-- Footer bilerek `rv` değil: gizlilik bağlantısı kaydırma şansına bırakılmaz. -->
   <footer class="mono">
@@ -1033,5 +1045,7 @@ if (el) { const go = () => idle(() => mountDotField(el)); document.getElementByI
   Promise.all([document.fonts ? document.fonts.ready : 0, new Promise(r => document.readyState === "complete" ? r() : addEventListener("load", r, { once: true })), ...imgs]).then(close);
   setTimeout(close, 1500); })();
 </script>
+<span data-sk-ilerleme></span>
+<script src="scroll-katman.js"></script>
 </body>
 </html>
