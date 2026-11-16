@@ -11,7 +11,8 @@
  *   data-sk="derin"      kart içi öğe: ekran ortasına göre hafif kayar ve döner
  *   data-sk="kay"        başlık: ekrana girerken yandan yerine oturur
  *   data-sk="kat"        katmanlı öğe: data-sk-d (1,2,3…) derinliğiyle,
- *                        ekrana girerken ayrık gelir, tamamen görününce üst üste oturur
+ *                        ekrana girerken ayrık gelir, tamamen görününce üst üste oturur;
+ *                        data-sk-dinlen="0" durunca kalan yankıyı, data-sk-x="0" yana kaymayı kapatır
  *   data-sk-ilerleme     üstte ince ilerleme çizgisi
  *
  * Yalnız `translate`, `rotate`, `opacity` yazar; mevcut `transform`
@@ -63,7 +64,9 @@
       if (r.top > vh + 100 || r.bottom < -100) return;
       var p = clamp((vh - r.top) / Math.max(r.height, 1), 0, 1); // 0 girerken, 1 tamamen görünür
       var d = parseFloat(el.getAttribute('data-sk-d')) || 1, k = (1 - p) * o;
-      var x = (k * d * 14) + (d - 1) * 20 * o, yy = (k * d * 46) - (d - 1) * 24 * o; // durunca da hafif yankı
+      var rest = el.hasAttribute('data-sk-dinlen') ? parseFloat(el.getAttribute('data-sk-dinlen')) || 0 : 1; // durunca kalan yankı
+      var sx = el.hasAttribute('data-sk-x') ? parseFloat(el.getAttribute('data-sk-x')) || 0 : 1;
+      var x = ((k * d * 14) + (d - 1) * 20 * o * rest) * sx, yy = (k * d * 46) - (d - 1) * 24 * o * rest;
       el.style.translate = o ? x.toFixed(1) + 'px ' + yy.toFixed(1) + 'px' : '';
     });
     if (bar) {
